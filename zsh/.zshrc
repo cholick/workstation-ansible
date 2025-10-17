@@ -21,6 +21,7 @@ alias fix-download="sudo xattr -r -d com.apple.quarantine"
 alias clear-pat="git config --local credential.helper ''"
 alias codespace-cleanup="gh codespace list --json name,lastUsedAt | jq -r 'sort_by(.lastUsedAt)[:5][] | .name' | xargs -n1 -I{} gh codespace delete -c {} --force"
 alias slack-hdr-fix="killall Slack ; open /Applications/Slack.app/ --args --force-color-profile=srgb"
+alias clear-pat="git credential-osxkeychain erase <<< $'protocol=https\nhost=github.com'"
 
 # Configure zsh plugins
 
