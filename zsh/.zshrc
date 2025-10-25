@@ -22,6 +22,8 @@ alias clear-pat="git config --local credential.helper ''"
 alias codespace-cleanup="gh codespace list --json name,lastUsedAt | jq -r 'sort_by(.lastUsedAt)[:5][] | .name' | xargs -n1 -I{} gh codespace delete -c {} --force"
 alias slack-hdr-fix="killall Slack ; open /Applications/Slack.app/ --args --force-color-profile=srgb"
 alias clear-pat="git credential-osxkeychain erase <<< $'protocol=https\nhost=github.com'"
+# Revisit photo-clean on new phone - other potential tags Pixel not currently using
+alias photo-clean='exiftool -gps:all= -overwrite_original'
 
 # Configure zsh plugins
 
