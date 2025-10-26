@@ -4,29 +4,26 @@ if [[ -s ~/.zprezto/init.zsh ]]; then
 fi
 
 # Aliases
-
+alias 🐱='cat'
 alias history="fc -l 1"
-
+alias rm='nocorrect rm'
 alias -g ...='../..'
 alias -g ....='../../..'
 alias -g .....='../../../..'
 alias -g ......='../../../../..'
 
-alias rm='nocorrect rm'
-alias 🐱='cat'
 alias dnsmasq-restart="sudo launchctl stop homebrew.mxcl.dnsmasq && sudo launchctl start homebrew.mxcl.dnsmasq"
+alias slack-hdr-fix="killall Slack ; open /Applications/Slack.app/ --args --force-color-profile=srgb"
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 alias jetbrains="/Applications/GoLand.app/Contents/MacOS/goland -e"
+
 alias fix-download="sudo xattr -r -d com.apple.quarantine"
-alias clear-pat="git config --local credential.helper ''"
-alias codespace-cleanup="gh codespace list --json name,lastUsedAt | jq -r 'sort_by(.lastUsedAt)[:5][] | .name' | xargs -n1 -I{} gh codespace delete -c {} --force"
-alias slack-hdr-fix="killall Slack ; open /Applications/Slack.app/ --args --force-color-profile=srgb"
 alias clear-pat="git credential-osxkeychain erase <<< $'protocol=https\nhost=github.com'"
+alias codespace-cleanup="gh codespace list --json name,lastUsedAt | jq -r 'sort_by(.lastUsedAt)[:5][] | .name' | xargs -n1 -I{} gh codespace delete -c {} --force"
 # Revisit photo-clean on new phone - other potential tags Pixel not currently using
 alias photo-clean='exiftool -gps:all= -overwrite_original'
 
-# Configure zsh plugins
-
+# Configure zsh / shell
 export HISTFILE=~/.zsh_history
 export HISTSIZE=40000
 export SAVEHIST=40000
@@ -36,9 +33,7 @@ setopt APPEND_HISTORY
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 unsetopt SHARE_HISTORY
-
 setopt HIST_VERIFY
-
 setopt HIST_IGNORE_DUPS
 setopt HIST_IGNORE_SPACE
 setopt HIST_EXPIRE_DUPS_FIRST
@@ -80,8 +75,7 @@ fix-time() {
 	sudo pkill timed
 }
 
-
-# Configurations
+# Configuration apps
 export DOCKER_CLI_HINTS=false
 export DOCKER_SCAN_SUGGEST=false
 export EDITOR=vim
