@@ -22,6 +22,8 @@ alias clear-pat="git credential-osxkeychain erase <<< $'protocol=https\nhost=git
 alias codespace-cleanup="gh codespace list --json name,lastUsedAt | jq -r 'sort_by(.lastUsedAt)[:5][] | .name' | xargs -n1 -I{} gh codespace delete -c {} --force"
 # Revisit photo-clean on new phone - other potential tags Pixel not currently using
 alias photo-clean='exiftool -gps:all= -overwrite_original'
+# https://apu.software/2024/04/02/audio-units.html
+alias au-validate-and-list='auval -al'
 
 # Configure zsh / shell
 export HISTFILE=~/.zsh_history
