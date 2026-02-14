@@ -37,7 +37,7 @@ System:
 1. Notifications -> Allow when mirror/sharing
 1. Menu Bar -> Show Menu Bar Background
 
-Replacement scirpt for the OSX role
+Scriptable settings:
 
 ```shell
 # Faster key repeat
@@ -103,6 +103,9 @@ defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
 # Terminal: Set Homebrew as default profile
 defaults write com.apple.Terminal "Default Window Settings" -string "Homebrew"
 defaults write com.apple.Terminal "Startup Window Settings" -string "Homebrew"
+
+# Remove all the junk Apple pins to the dock on a new Mac
+defaults write com.apple.dock persistent-apps -array
 
 # Show battery percentage
 defaults write com.apple.controlcenter "NSStatusItem Visible Battery" -bool true
