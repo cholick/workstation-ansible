@@ -21,34 +21,17 @@ It's now more of a rough set of notes, though it still includes some dotfiles (w
    * Keyboard -> Check "Use Option as Meta key"
    * Advanced -> Disable "Allow VT100 application keypad mode" (so [numpad "enter" works in terminal](https://vi.stackexchange.com/questions/11581/why-doesnt-my-numpad-work-right-in-my-terminal))
 1. Finder
-   * General -> New Finder window -> Desktop
-   * View -> Show Path Bar
-   * Preferences -> Advanced -> Keep folders on top (both options)
+   * View -> Show Tab Bar
    * Preferences -> Sidebar -> Show Hard disks, Hide air drop
 
 System:
 1. Accessibility
-   * Display -> Menu bar size: Large
    * Display -> Show window title icons
-   * Pointer -> Disable shake
-1. Control Center
-   * Modules -> Sound -> Always show
-   * Battery -> Show Percentage
-1. Desktop & Dock -> Desktop & Stage Manager -> Click wallpaper to reveal desktop -> Only in Stage manager
-1. Desktop & Dock -> Minimize windows using -> Scale Effect
-1. Desktop & Dock -> Uncheck "Close windows when quitting an application"
-1. Desktop & Dock -> Hotcorners
-   * Upper left -> Disable screensaver
-   * Lower Left -> Display to sleep
-   * Lower right -> Desktop
-1. Desktop & Dock -> Diable all four tiling options (drag windows to edges to tile, etc)
 1. Displays -> Universal Control -> Disable "Push throw edge" and "Automatically reconnect"
 1. Keyboard -> Shortcuts
-   1. Toggle on Function keys
    1. Remove conflicting OS shortcuts: Keyboard -> Shortcuts
       * Services -> Text -> Search man Page Index... (It's set to ⇧⌘A, which conflicts with JetBrains tooling's "Find Action")
       * App Shortcuts -> Show Help menu
-      * Spotlight -> Search (replaced by Alfred)
       * Display -> Disable both (these mess with kvm switch hotkey)
    1. Hotkeys
       * Mission Control: F8
@@ -57,22 +40,49 @@ System:
          * Move right a space: ⌃⌘→
 1. Private & Security -> Full Disk Access -> `sshd-keygen-wrapper` (needed for the `rsync`s transferring data across machines)
 1. Notifications -> Allow when mirror/sharing
-1. Trackpad
-   * Point and Click -> Secondary Click -> Bottom Right
-   * Point and Click -> Enable tap to click
-   * Swipe between pages -> Swith with Three Fingers
 1. Menu Bar -> Show Menu Bar Background
 
 Replacement scirpt for the OSX role
-
 
 ```shell
 # Faster key repeat
 defaults write -g KeyRepeat -int 2
 defaults write -g InitialKeyRepeat -int 25
 
+# General
+defaults write -g AppleMenuBarFontSize -string "large"
+
+# Finder
+## New window -> Desktop
+defaults write com.apple.finder NewWindowTarget -string "PfDe"
+defaults write com.apple.finder ShowPathbar -bool true
+## View options
+defaults write com.apple.finder _FXSortFoldersFirst -bool true
+defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
+defaults write -g AppleShowAllExtensions -bool true
+
+# Click wallpaper to reveal desktop -> Only in Stage Manager
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
+
+# Disable window tiling
+defaults write com.apple.WindowManager EnableTilingByEdgeDrag -bool false
+defaults write com.apple.WindowManager EnableTopTilingByEdgeDrag -bool false
+defaults write com.apple.WindowManager EnableTilingOptionAccelerator -bool false
+defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
+
+# Minimize windows using Scale Effect
+defaults write com.apple.dock mineffect -string "scale"
+
+# Don't close windows when quitting
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
+
 # Hating em dashes before it was cool
 defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
+
+# Hot corners (values: 0=none, 2=mission control, 4=desktop, 5=screensaver start, 6=disable screensaver, 10=display sleep)
+defaults write com.apple.dock wvous-tl-corner -int 6   # upper-left: disable screensaver
+defaults write com.apple.dock wvous-bl-corner -int 10  # lower-left: display sleep
+defaults write com.apple.dock wvous-br-corner -int 4   # lower-right: desktop
 
 # Fix up scrolling
 defaults write -g AppleShowScrollBars -string "Always"
@@ -82,18 +92,42 @@ defaults write -g NSScrollAnimationEnabled -bool false
 # Tahoe has a really annoying pop-in animation, this turns that off
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
-defaults write -g AppleShowAllExtensions -bool true
+# Always show sound option in menu bar
+defaults -currentHost write com.apple.controlcenter Sound -int 18
 
 # Default to list view in finder windows
 defaults write com.apple.finder FXPreferredViewStyle -string Nlsv
 
 # Don't re-arrange spaces based on LRU
 defaults write com.apple.dock mru-spaces -bool false
+
+# Disable shake to locate pointer
+defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool true
+
+# Trackpad
+## Secondary click bottom-right
+defaults write com.apple.AppleMultitouchTrackpad TrackpadCornerSecondaryClick -int 2
+defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+## Tap to click
+defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
+## Three-finger swipe between pages
+# defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
+defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 1
+
+# Disable Spotlight shortcut (replaced by Alfred)
+defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 '<dict><key>enabled</key><false/></dict>'
+# Use F-keys as standard function keys
+defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
+
+# Show battery percentage
+defaults write com.apple.controlcenter "NSStatusItem Visible Battery" -bool true
 ```
+
+Logout and login after writing defaults.
 
 ### Additional scripting
 
-```
+```shell
 git config --global init.defaultBranch main
 git config --global push.autoSetupRemote true
 git config --global core.excludesfile ~/.gitignore_global
@@ -113,7 +147,7 @@ EOF
 ### VSCode
 In theory, settings sync deals with all this. To export settings: `~/Library/Application\ Support/Code/User/settings.json` 
 
-### Alred
+### Alfred
 Install [Alfred Workflows](https://github.com/cholick?tab=repositories&q=alfred)
 
 ### References
