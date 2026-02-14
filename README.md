@@ -1,4 +1,4 @@
-# workstation_ansible
+# workstation-ansible
 ### Dotfile (Sort of)
 
 This repo was an ansible playbook at one point, but the cost of maintaining that didn't make sense for how
@@ -100,7 +100,6 @@ Host *
    StrictHostKeyChecking no
    UserKnownHostsFile=/dev/null
 EOF
-
 ```
 
 ### Sublime
@@ -110,11 +109,8 @@ EOF
 ### VSCode
 In theory, settings sync deals with all this. To export settings: `~/Library/Application\ Support/Code/User/settings.json` 
 
-### Notes
-##### Alred
-* https://github.com/willfarrell/alfred-encode-decode-workflow
-* https://github.com/willfarrell/alfred-hash-workflow
-
+### Alred
+Install [Alfred Workflows](https://github.com/cholick?tab=repositories&q=alfred)
 
 ### References
 
