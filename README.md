@@ -67,12 +67,15 @@ Replacement scirpt for the OSX role
 
 
 ```shell
+# Faster key repeat
 defaults write -g KeyRepeat -int 2
 defaults write -g InitialKeyRepeat -int 25
+
+# Hating em dashes before it was cool
 defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
 
+# Fix up scrolling
 defaults write -g AppleShowScrollBars -string "Always"
-
 defaults write -g com.apple.swipescrolldirection -bool false
 defaults write -g NSScrollAnimationEnabled -bool false
 
@@ -80,6 +83,7 @@ defaults write -g NSScrollAnimationEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
 defaults write -g AppleShowAllExtensions -bool true
+
 # Default to list view in finder windows
 defaults write com.apple.finder FXPreferredViewStyle -string Nlsv
 
