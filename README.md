@@ -16,18 +16,13 @@ It's now more of a rough set of notes, though it still includes some dotfiles (w
 ### macOS Config
 
 1. Terminal
-   * Set Homebrew as default profile
    * Font: 14pt Menlo
    * Keyboard -> Check "Use Option as Meta key"
    * Advanced -> Disable "Allow VT100 application keypad mode" (so [numpad "enter" works in terminal](https://vi.stackexchange.com/questions/11581/why-doesnt-my-numpad-work-right-in-my-terminal))
 1. Finder
-   * View -> Show Tab Bar
    * Preferences -> Sidebar -> Show Hard disks, Hide air drop
 
 System:
-1. Accessibility
-   * Display -> Show window title icons
-1. Displays -> Universal Control -> Disable "Push throw edge" and "Automatically reconnect"
 1. Keyboard -> Shortcuts
    1. Remove conflicting OS shortcuts: Keyboard -> Shortcuts
       * Services -> Text -> Search man Page Index... (It's set to ⇧⌘A, which conflicts with JetBrains tooling's "Find Action")
@@ -60,6 +55,9 @@ defaults write com.apple.finder ShowPathbar -bool true
 defaults write com.apple.finder _FXSortFoldersFirst -bool true
 defaults write com.apple.finder _FXSortFoldersFirstOnDesktop -bool true
 defaults write -g AppleShowAllExtensions -bool true
+defaults write com.apple.finder ShowTabBar -bool true
+# Default to list view in finder windows
+defaults write com.apple.finder FXPreferredViewStyle -string Nlsv
 
 # Click wallpaper to reveal desktop -> Only in Stage Manager
 defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false
@@ -70,15 +68,6 @@ defaults write com.apple.WindowManager EnableTopTilingByEdgeDrag -bool false
 defaults write com.apple.WindowManager EnableTilingOptionAccelerator -bool false
 defaults write com.apple.WindowManager EnableTiledWindowMargins -bool false
 
-# Minimize windows using Scale Effect
-defaults write com.apple.dock mineffect -string "scale"
-
-# Don't close windows when quitting
-defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
-
-# Hating em dashes before it was cool
-defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
-
 # Hot corners (values: 0=none, 2=mission control, 4=desktop, 5=screensaver start, 6=disable screensaver, 10=display sleep)
 defaults write com.apple.dock wvous-tl-corner -int 6   # upper-left: disable screensaver
 defaults write com.apple.dock wvous-bl-corner -int 10  # lower-left: display sleep
@@ -88,18 +77,6 @@ defaults write com.apple.dock wvous-br-corner -int 4   # lower-right: desktop
 defaults write -g AppleShowScrollBars -string "Always"
 defaults write -g com.apple.swipescrolldirection -bool false
 defaults write -g NSScrollAnimationEnabled -bool false
-
-# Tahoe has a really annoying pop-in animation, this turns that off
-defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
-
-# Always show sound option in menu bar
-defaults -currentHost write com.apple.controlcenter Sound -int 18
-
-# Default to list view in finder windows
-defaults write com.apple.finder FXPreferredViewStyle -string Nlsv
-
-# Don't re-arrange spaces based on LRU
-defaults write com.apple.dock mru-spaces -bool false
 
 # Disable shake to locate pointer
 defaults write ~/Library/Preferences/.GlobalPreferences CGDisableCursorLocationMagnification -bool true
@@ -114,13 +91,43 @@ defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 # defaults write NSGlobalDomain AppleEnableSwipeNavigateWithScrolls -bool true
 defaults write com.apple.AppleMultitouchTrackpad TrackpadThreeFingerHorizSwipeGesture -int 1
 
+# Universal Control: Disable "Push through edge" and "Automatically reconnect"
+defaults write com.apple.universalcontrol DisableMagicEdges -bool true
+defaults write com.apple.universalcontrol SuspendPairing -bool true
+
 # Disable Spotlight shortcut (replaced by Alfred)
 defaults write com.apple.symbolichotkeys AppleSymbolicHotKeys -dict-add 64 '<dict><key>enabled</key><false/></dict>'
 # Use F-keys as standard function keys
 defaults write NSGlobalDomain com.apple.keyboard.fnState -bool true
 
+# Terminal: Set Homebrew as default profile
+defaults write com.apple.Terminal "Default Window Settings" -string "Homebrew"
+defaults write com.apple.Terminal "Startup Window Settings" -string "Homebrew"
+
 # Show battery percentage
 defaults write com.apple.controlcenter "NSStatusItem Visible Battery" -bool true
+
+# Minimize windows using Scale Effect
+defaults write com.apple.dock mineffect -string "scale"
+
+# Don't close windows when quitting
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
+
+# Hating em dashes before it was cool
+defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
+
+# Tahoe has a really annoying pop-in animation, this turns that off (new to Tahoe, setting not in Sequoia)
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+
+# Always show sound option in menu bar
+defaults -currentHost write com.apple.controlcenter Sound -int 18
+
+# Don't re-arrange spaces based on LRU
+defaults write com.apple.dock mru-spaces -bool false
+
+# sudo
+## Show window title icons
+sudo defaults write com.apple.universalaccess showWindowTitlebarIcons -bool true
 ```
 
 Logout and login after writing defaults.
