@@ -142,6 +142,13 @@ git config --global init.defaultBranch main
 git config --global push.autoSetupRemote true
 git config --global core.excludesfile ~/.gitignore_global
 
+cat << EOF >  ~/.gitignore_global
+.DS_Store
+.idea
+tmp
+__pycache__
+EOF
+
 # known_hosts predates servers being ephemeral & makes no sense now
 cat << EOF >  ~/.ssh/config
 Host *
@@ -149,6 +156,7 @@ Host *
    UserKnownHostsFile=/dev/null
 EOF
 ```
+
 
 ### Sublime
 * For color customization, show current scope with: ⌥ + ⌘ + P
