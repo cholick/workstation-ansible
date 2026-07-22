@@ -19,6 +19,7 @@ alias jetbrains="/Applications/GoLand.app/Contents/MacOS/goland -e"
 
 alias fix-download="sudo xattr -r -d com.apple.quarantine"
 alias clear-pat="git credential-osxkeychain erase <<< $'protocol=https\nhost=github.com'"
+alias fetch-pat="printf 'protocol=https\nhost=github.com\n\n' | git credential fill | sed -n 's/^password=//p'"
 alias codespace-cleanup="gh codespace list --json name,lastUsedAt | jq -r 'sort_by(.lastUsedAt)[:5][] | .name' | xargs -n1 -I{} gh codespace delete -c {} --force"
 # Revisit photo-clean on new phone - other potential tags Pixel not currently using
 alias photo-clean='exiftool -gps:all= -overwrite_original'
@@ -92,14 +93,6 @@ export PATH=$PATH:$GOPATH/bin
 export PATH=$PATH:/usr/local/opt/go/libexec/bin
 
 # *vm
-export NVM_DIR="$HOME/.nvm"
-function nvm {
-    unset -f nvm
-	echo "Loading nvm"
-	. "/Users/$HOME/Applications/brew/opt/nvm/nvm.sh"
-	nvm $@
-}
-
 function pyenv {
 	unset -f pyenv
 	echo "Loading pyenv"
