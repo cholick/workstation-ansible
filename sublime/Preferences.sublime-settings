@@ -8,6 +8,7 @@
 		"Codespace",
 	],
 	"color_scheme": "Breakers.sublime-color-scheme",
+	"disable_plugin_host_3.3": true,
 	"ensure_newline_at_eof_on_save": true,
 	"font_face": "Menlo",
 	"font_size": 12,
