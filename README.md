@@ -165,6 +165,8 @@ EOF
 ### VSCode
 In theory, settings sync deals with all this. To export settings: `~/Library/Application\ Support/Code/User/settings.json` 
 
+Do turn off UI sync, though. `Settings Sync: Configure` -> uncheck `UI State`, `Prompts and Instructions`. I've see the UI sync go rogue and create several Gigabytes of json files, and it's not a feature I need anyway.
+
 ### Alfred
 Install [Alfred Workflows](https://github.com/cholick?tab=repositories&q=alfred)
 
