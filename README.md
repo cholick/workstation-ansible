@@ -119,9 +119,6 @@ defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool true
 # Hating em dashes before it was cool
 defaults write -g NSAutomaticDashSubstitutionEnabled -bool false
 
-# Tahoe has a really annoying pop-in animation, this turns that off (new to Tahoe, setting not in Sequoia)
-defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
-
 # Always show sound option in menu bar
 defaults -currentHost write com.apple.controlcenter Sound -int 18
 
@@ -131,6 +128,16 @@ defaults write com.apple.dock mru-spaces -bool false
 # sudo
 ## Show window title icons
 sudo defaults write com.apple.universalaccess showWindowTitlebarIcons -bool true
+
+## Post Sequoia fixes. Man, I miss Sequoia.
+# Tahoe has a really annoying pop-in animation, this turns that off (new to Tahoe, setting not in Sequoia)
+defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
+
+# Reduce border radius
+defaults write -g NSConvolutionOverride1 -float 10
+
+# Make the menu bar visible (same as System -> Menu Bar -> Show Background)
+defaults write NSGlobalDomain SLSMenuBarUseBlurredAppearance -bool true
 ```
 
 Logout and login after writing defaults.
