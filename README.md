@@ -130,7 +130,7 @@ defaults write com.apple.dock mru-spaces -bool false
 sudo defaults write com.apple.universalaccess showWindowTitlebarIcons -bool true
 
 ## Post Sequoia fixes. Man, I miss Sequoia.
-# Tahoe has a really annoying pop-in animation, this turns that off (new to Tahoe, setting not in Sequoia)
+# Remove pop in animation for windows
 defaults write NSGlobalDomain NSAutomaticWindowAnimationsEnabled -bool false
 
 # Reduce border radius
