@@ -35,7 +35,6 @@ System:
          * Move right a space: ⌃⌘→
 1. Private & Security -> Full Disk Access -> `sshd-keygen-wrapper` (needed for the `rsync`s transferring data across machines)
 1. Notifications -> Allow when mirror/sharing
-1. Menu Bar -> Show Menu Bar Background
 
 Scriptable settings:
 
@@ -157,6 +156,7 @@ __pycache__
 EOF
 
 # known_hosts predates servers being ephemeral & makes no sense now
+mkdir -p ~/.ssh
 cat << EOF >  ~/.ssh/config
 Host *
    StrictHostKeyChecking no
