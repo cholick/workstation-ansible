@@ -86,6 +86,7 @@ export EDITOR=vim
 export PATH=/usr/local/bin:$HOME/bin:$PATH:/usr/bin:/bin:/usr/sbin:/sbin
 export PATH=$HOME/Applications/brew/bin:$PATH
 export PATH=$HOME/Applications/brew/sbin:$PATH
+export PATH=$HOME/Applications/rust/bin:$PATH
 export PATH=$PATH:$HOME/Applications
 
 export GOPATH=$HOME/go
